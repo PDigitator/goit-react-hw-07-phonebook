@@ -2,14 +2,15 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Report } from 'notiflix';
 
-import { getContacts } from 'redux/selectors';
-import { addContact } from 'redux/contactsSlice';
+import { selectContacts } from 'redux/selectors';
+// import { addContact } from 'redux/contactsSlice'; //!
 import Button from 'components/Button/Button';
 
 import { Form, Label, Input } from 'components/ContactForm/ContactForm.styled';
+import { addContact } from 'redux/operations';
 
 const ContactForm = () => {
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const dispatch = useDispatch();
 
@@ -17,7 +18,7 @@ const ContactForm = () => {
     event.preventDefault();
     const form = event.target;
     const { name, number } = form.elements;
-
+    const newContact = { name: name.value, phone: number.value };
     if (
       contacts.some(
         contact => contact.name.toLowerCase() === name.value.toLowerCase()
@@ -25,7 +26,7 @@ const ContactForm = () => {
     ) {
       Report.info('SORRY', `${name.value} is already in contacts.`, 'Ok');
     } else {
-      dispatch(addContact(name.value, number.value));
+      dispatch(addContact(newContact));
     }
 
     form.reset();

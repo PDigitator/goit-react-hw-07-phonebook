@@ -1,20 +1,22 @@
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { deleteContact } from 'redux/operations';
 
 import {
   Paragraph,
   Span,
   Btn,
 } from 'components/ListElement/ListElement.styled';
-import { deleteContact } from 'redux/contactsSlice';
-import { useDispatch } from 'react-redux';
+// import { deleteContact } from 'redux/contactsSlice'; //!
 
-const ListElement = ({ element: { id, name, number } }) => {
+const ListElement = ({ element: { id, name, phone } }) => {
   const dispatch = useDispatch();
 
   return (
     <>
       <Paragraph>
-        {name}:<Span>{number}</Span>
+        {name}:<Span>{phone}</Span>
       </Paragraph>
       <Btn onClick={() => dispatch(deleteContact(id))}>Delete</Btn>
     </>
@@ -25,7 +27,7 @@ ListElement.propTypes = {
   element: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    number: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired,
   }).isRequired,
 };
 
