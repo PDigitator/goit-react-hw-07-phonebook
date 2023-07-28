@@ -4,16 +4,8 @@ import { selectContacts, selectFIlter } from 'redux/selectors';
 
 import ListElement from 'components/ListElement/ListElement';
 import { List, ListItem } from 'components/ContactList/ContactList.styled';
-// import { useEffect } from 'react';
-// import { fetchContacts } from 'redux/operations';
 
 const ContactList = () => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
-
   const contacts = useSelector(selectContacts);
 
   const filter = useSelector(selectFIlter);

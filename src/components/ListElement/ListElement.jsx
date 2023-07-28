@@ -8,7 +8,6 @@ import {
   Span,
   Btn,
 } from 'components/ListElement/ListElement.styled';
-// import { deleteContact } from 'redux/contactsSlice'; //!
 
 const ListElement = ({ element: { id, name, phone } }) => {
   const dispatch = useDispatch();
